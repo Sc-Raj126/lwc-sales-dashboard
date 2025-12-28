@@ -1,0 +1,56 @@
+<template>
+    <div class="sales-dashboard">
+        <div class="header">
+            <h2>Sales Dashboard</h2>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-section">
+            <lightning-input
+                type="search"
+                placeholder="Search accounts by name or city..."
+                onchange={handleSearchChange}
+                class="search-input">
+            </lightning-input>
+        </div>
+
+        <!-- Loading Indicator -->
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+
+        <!-- Error Message -->
+        <template if:true={error}>
+            <lightning-card>
+                <p style="color: red;">{error}</p>
+            </lightning-card>
+        </template>
+
+        <!-- Accounts List -->
+        <template if:true={displayedAccounts}>
+            <lightning-card>
+                <div class="accounts-list">
+                    <template for:each={displayedAccounts} for:item="account">
+                        <div key={account.Id} class="account-card">
+                            <div class="account-header">
+                                <h3>{account.Name}</h3>
+                                <span class="account-rating">{account.Rating}</span>
+                            </div>
+                            <div class="account-details">
+                                <p><strong>City:</strong> {account.BillingCity}</p>
+                                <p><strong>Industry:</strong> {account.Industry}</p>
+                                <p><strong>Phone:</strong> {account.Phone}</p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </lightning-card>
+        </template>
+
+        <template if:false={displayedAccounts}>
+            <lightning-card>
+                <p>No accounts found</p>
+            </lightning-card>
+        </template>
+    </div>
+</template>
