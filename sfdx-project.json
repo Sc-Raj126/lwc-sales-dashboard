@@ -1,0 +1,8 @@
+{
+  "schema": "58.0",
+  "showTestCodeCoverage": true,
+  "sourceApiVersion": "58.0",
+  "packageAliases": {
+    "lwc-sales-dashboard": "0Ho5X000000009FSAQ"
+  }
+}
